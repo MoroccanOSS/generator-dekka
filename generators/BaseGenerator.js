@@ -22,9 +22,7 @@ class BaseGenerator extends Generator {
             this._abort({ showHelp: true });
         } else {
             const lastNode = command.lastNode();
-            if(lastNode.isLeaf) {
-                this.argument(lastNode.name, lastNode.config);
-            } else {
+            if(!lastNode.isLeaf) {
                 command.lastNodeChildren().forEach(node => this.argument(node.name, node.config));
                 this._abort({ showHelp: true });
             }
